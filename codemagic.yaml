@@ -13,8 +13,18 @@ workflows:
       - name: Flutter test
         script: |
           flutter test
+      - name: Build APK with Flutter
+        script: |
+          flutter build apk --release
+
     artifacts:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/mapping.txt
       - flutter_drive.log
+    publishing:
+      firebase:
+        firebase_token: $FIREBASE_TOKEN
+        android:
+          app_id: 1:651915284618:android:3e97858628e9bf4e1a5d73
+
