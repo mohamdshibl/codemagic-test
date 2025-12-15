@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "863509653760",
+    "project_id": "codemagic-test-dev",
+    "storage_bucket": "codemagic-test-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863509653760:android:b5cac2dcd9203e1ae92be5",
+        "android_client_info": {
+          "package_name": "com.example.codemagic.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg6T-lpcADdmDjXXfyAEm_yow0n85iOac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

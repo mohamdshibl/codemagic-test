@@ -1,0 +1,17 @@
+flavors:
+  dev:
+    app:
+      name: "App Dev"
+    android:
+      applicationId: "com.example.codemagic.dev"
+      icon: "assets/dev_icon.png"
+    ios:
+      bundleId: "com.example.codemagic.dev"
+  prod:
+    app:
+      name: "App Prod"
+    android:
+      applicationId: "com.example.codemagic"
+      icon: "assets/prod_icon.png"
+    ios:
+      bundleId: "com.example.codemagic"
