@@ -1,30 +1,68 @@
+# workflows:
+#   my-workflow:
+#     name: Codemagic Workflow
+#     environment:
+#       flutter: stable
+#     scripts:
+#       - name: Get dependencies
+#         script: |
+#           flutter packages pub get
+#       - name: Flutter analyze
+#         script: |
+#           flutter analyze
+#       - name: Flutter test
+#         script: |
+#           flutter test
+#       - name: Build APK with Flutter
+#         script: |
+#           flutter build apk --release
+
+#     artifacts:
+#       - build/**/outputs/**/*.apk
+#       - build/**/outputs/**/*.aab
+#       - build/**/outputs/**/mapping.txt
+#       - flutter_drive.log
+#     publishing:
+#       firebase:
+#         firebase_token: $FIREBASE_TOKEN
+#         android:
+#           app_id: 1:651915284618:android:3e97858628e9bf4e1a5d73
+
 workflows:
   my-workflow:
-    name: Codemagic Workflow
+    name: Codemagic Firebase Distribution
+    max_build_duration: 60
+
     environment:
       flutter: stable
+
     scripts:
+      - name: Install Firebase CLI
+        script: |
+          npm install -g firebase-tools
+
       - name: Get dependencies
         script: |
-          flutter packages pub get
+          flutter pub get
+
       - name: Flutter analyze
         script: |
           flutter analyze
+
       - name: Flutter test
         script: |
           flutter test
+
       - name: Build APK with Flutter
         script: |
           flutter build apk --release
 
-    artifacts:
-      - build/**/outputs/**/*.apk
-      - build/**/outputs/**/*.aab
-      - build/**/outputs/**/mapping.txt
-      - flutter_drive.log
-    publishing:
-      firebase:
-        firebase_token: $FIREBASE_TOKEN
-        android:
-          app_id: 1:651915284618:android:3e97858628e9bf4e1a5d73
+      - name: Upload to Firebase App Distribution
+        script: |
+          firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk \
+            --app 1:651915284618:android:3e97858628e9bf4e1a5d73 \
+            --groups testers \
+            --release-notes "Build from Codemagic"
 
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
