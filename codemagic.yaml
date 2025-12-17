@@ -29,43 +29,9 @@
 #           app_id: 1:651915284618:android:3e97858628e9bf4e1a5d73
 
 workflows:
-  my-workflow:
-    name: Codemagic Firebase Distribution
-    max_build_duration: 60
 
-    environment:
-      flutter: stable
 
-    scripts:
-      - name: Install Firebase CLI
-        script: |
-          npm install -g firebase-tools
 
-      - name: Get dependencies
-        script: |
-          flutter pub get
-
-      - name: Flutter analyze
-        script: |
-          flutter analyze
-
-      - name: Flutter test
-        script: |
-          flutter test
-
-      - name: Build APK with Flutter
-        script: |
-          flutter build apk --release
-
-      - name: Upload to Firebase App Distribution
-        script: |
-          firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk \
-            --app 1:651915284618:android:3e97858628e9bf4e1a5d73 \
-            --groups testers \
-            --release-notes "Build from Codemagic"
-
-    artifacts:
-      - build/app/outputs/flutter-apk/app-release.apk
 
   android-dev-workflow:
     name: Android Dev Workflow
