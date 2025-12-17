@@ -66,3 +66,42 @@ workflows:
 
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
+
+  android-dev-workflow:
+    name: Android Dev Workflow
+    max_build_duration: 60
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get dependencies
+        script: flutter pub get
+      - name: Build APK (Dev)
+        script: |
+          flutter build apk \
+            --flavor dev \
+            --dart-define=appFlavor=dev \
+            --build-name=1.0.0 \
+            --build-number=1 \
+            --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-dev-release.apk
+
+  android-prod-workflow:
+    name: Android Prod Workflow
+    max_build_duration: 60
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get dependencies
+        script: flutter pub get
+      - name: Build APK (Prod)
+        script: |
+          flutter build apk \
+            --flavor prod \
+            --dart-define=appFlavor=prod \
+            --build-name=1.0.0 \
+            --build-number=1 \
+            --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-prod-release.apk
+

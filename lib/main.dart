@@ -1,10 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'app.dart';
 import 'flavors.dart';
+
+const appFlavor = String.fromEnvironment('appFlavor');
 
 void main() {
   F.appFlavor = Flavor.values.firstWhere(

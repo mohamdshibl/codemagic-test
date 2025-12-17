@@ -17,4 +17,12 @@ class F {
     }
   }
 
+  static String get baseUrl {
+    switch (appFlavor) {
+      case Flavor.dev:
+        return 'https://dev.example.com';
+      case Flavor.prod:
+        return 'https://www.example.com';
+    }
+  }
 }
